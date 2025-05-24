@@ -56,6 +56,8 @@ def deploy(String environment){
     sh "docker compose stop sample-book-app-${environment}"
     sh "docker compose rm sample-book-app-${environment}"
     sh "docker compose up -d sample-book-app-${environment}"
+        //sh "docker compose up -d sample-book-app-${environment.toLowerCase()}"
+
 }
 
 def test(String environment){
