@@ -4,10 +4,48 @@ pipeline {
         string(name: 'NAME', defaultValue: 'World', description: 'Who should I say hello to?')
    }
     stages {
-        stage('Hello') {
+        stage('build') {
             steps {
-                echo "Hello ${params.NAME}"
+                echo "build of node app is starting"
+            }
+        }
+        stage('deploty-dev') {
+            steps {
+                echo "Deployment of node app to DEV env"
+            }
+        }
+        stage('dev-test') {
+            steps {
+                echo "API test execution of node app to DEV env"
+            }
+        }
+        stage('deploty-stg') {
+            steps {
+                echo "Deployment of node app to STG env"
+            }
+        }
+        stage('dev-stg') {
+            steps {
+                echo "API test execution of node app to STG env"
+            }
+        }
+        stage('deploty-prod') {
+            steps {
+                echo "Deployment of node app to PROD env"
+            }
+        }
+        stage('dev-prod') {
+            steps {
+                echo "API test execution of node app to PROD env"
             }
         }
     }
 }
+
+//Build of application;
+//deployment in “DEV” env;
+//Test execution against DEV env;
+//deployment in “STG” env;
+//Test execution against STG env;
+//deployment in “PRD” env;
+//Test execution against PRD env.
