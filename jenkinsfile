@@ -53,6 +53,7 @@ def deploy(String environment){
 def test(String environment){
     echo "API test executuon against node application on ${environment} environment.."
 }
+
 //Build of application;
 //deployment in “DEV” env;
 //Test execution against DEV env;
