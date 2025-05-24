@@ -56,17 +56,18 @@ def buildup(){
 def deploy(String environment){
     echo "Deployment of node application on ${environment} environment.."
     sh "docker pull betija/sample-book-app"
-    //String lowercaseEnv = environment.toLowerCase()
+    //String lowercaseEnv = environment.toUpperCase
     sh "docker compose stop sample-book-app-${environment}"
     sh "docker compose rm sample-book-app-${environment}"
     sh "docker compose up -d sample-book-app-${environment}"
     //sh "docker compose up -d sample-book-app-${environment.toLowerCase()}"
-
 }
 
 def test(String environment){
     echo "API test executuon against node application on ${environment} environment.."
-
+    sh "docker pull betija/api-tests"
+    sh "docker run --rm --network=sample-book-app-network-compose -v $PWD:/api-tests/mochawesome-report betija/api-tests run BOOKS BOOKS_${environment.toUpperCase()}"
+    sh "ls"
 }
 
 //Build of application;
