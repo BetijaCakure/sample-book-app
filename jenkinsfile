@@ -10,32 +10,32 @@ pipeline {
         }
         stage('deploy-dev') {
             steps {
-                deploy("DEV")
+                deploy("dev")
             }
         }
         stage('test-dev') {
             steps {
-                test("DEV")
+                test("dev")
             }
         }
         stage('deploy-stg') {
             steps {
-                deploy("STG")
+                deploy("stg")
             }
         }
         stage('test-stg') {
             steps {
-                test("STG")
+                test("stg")
             }
         }
         stage('deploy-prd') {
             steps {
-                deploy("PROD")
+                deploy("prd")
             }
         }
         stage('test-prd') {
             steps {
-                test("PROD")
+                test("prd")
             }
         }
     }
@@ -52,6 +52,10 @@ def buildup(){
 
 def deploy(String environment){
     echo "Deployment of node application on ${environment} environment.."
+    sh "docker pull betija/sample-book-app"
+    sh "docker compose stop sample-book-app-${environment}"
+    sh "docker compose rm sample-book-app-${environment}"
+    sh "docker compose up -d sample-book-app-${environment}"
 }
 
 def test(String environment){
