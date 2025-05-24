@@ -68,6 +68,7 @@ def test(String environment){
     sh "docker pull betija/api-tests"
     sh "docker run --rm --network=sample-book-app-network-compose betija/api-tests run BOOKS BOOKS_${environment.toUpperCase()}"
     sh "ls"
+    sh "${$pwd}"
 }
 
 //Build of application;
