@@ -44,6 +44,10 @@ pipeline {
 
 def build(){
     echo "Building of node application is starting.."
+    sh "docker build -t betija/sample-book-app ."
+    
+    echo "Pushing image to docker registry"
+    sh "docker push betija/sample-book-app"
 }
 
 def deploy(String environment){

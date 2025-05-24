@@ -8,5 +8,5 @@ RUN npm install
 
 EXPOSE 1050
 
-CMD [ "index.js" ]
-ENTRYPOINT [ "node" ]
+CMD ["index.js"]
+ENTRYPOINT ["node"]
