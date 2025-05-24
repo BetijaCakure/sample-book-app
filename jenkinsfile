@@ -1,47 +1,56 @@
 pipeline {
     agent any
-    parameters{
-        string(name: 'NAME', defaultValue: 'World', description: 'Who should I say hello to?')
-   }
     stages {
         stage('build') {
             steps {
-                echo "build of node app is starting"
+               buid()
             }
         }
-        stage('deploty-dev') {
+        stage('deploy-dev') {
             steps {
-                echo "Deployment of node app to DEV env"
+                deploy("DEV")
             }
         }
-        stage('dev-test') {
+        stage('test-dev') {
             steps {
-                echo "API test execution of node app to DEV env"
+                test("DEV")
             }
         }
-        stage('deploty-stg') {
+        stage('deploy-stg') {
             steps {
-                echo "Deployment of node app to STG env"
+                deploy("STG")
             }
         }
-        stage('dev-stg') {
+        stage('test-stg') {
             steps {
-                echo "API test execution of node app to STG env"
+                test("STG")
             }
         }
-        stage('deploty-prod') {
+        stage('deploy-prd') {
             steps {
-                echo "Deployment of node app to PROD env"
+                deploy("PROD")
             }
         }
-        stage('dev-prod') {
+        stage('test-prd') {
             steps {
-                echo "API test execution of node app to PROD env"
+                test("PROD")
             }
         }
     }
+    
 }
 
+def build(){
+    echo "Building of node application is starting.."
+}
+
+def deploy(String environment){
+    echo "Deployment of node application on ${environment} environment.."
+}
+
+def test(String environment){
+    echo "API test executuon against node application on ${environment} environment.."
+}
 //Build of application;
 //deployment in “DEV” env;
 //Test execution against DEV env;
