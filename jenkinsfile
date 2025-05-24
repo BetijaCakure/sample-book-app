@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 script{
-                    buid()
+                    buildup()
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
     
 }
 
-def build(){
+def buildup(){
     echo "Building of node application is starting.."
     sh "docker build -t betija/sample-book-app ."
     
